@@ -1,0 +1,14 @@
+cub3d
+leak.log
+srcs/*.o
+includes/gnl/get_next_line.a
+includes/gnl/*.o
+includes/libft/libft.a
+includes/libft/*.o
+includes/mlx/Makefile.gen
+includes/mlx/libmlx.a
+includes/mlx/libmlx_Linux.a
+includes/mlx/obj/
+includes/mlx/test/Makefile.gen
+includes/mlx/test/main.o
+includes/mlx/test/mlx-test
