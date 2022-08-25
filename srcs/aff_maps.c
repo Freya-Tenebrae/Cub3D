@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:01:10 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/16 17:19:22 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:36:17 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,11 @@ static void	aff3(t_maps *maps)
 	ft_putstr("pos_player_y : ");
 	ft_putnbr(maps->y_pos);
 	ft_putchar('\n');
-	ft_putstr("angle player : ");
-	ft_putnbr(maps->angle);
+	ft_putstr("horizontal angle player : ");
+	ft_putnbr(maps->angle_h);
+	ft_putchar('\n');
+	ft_putstr("pitch : ");
+	ft_putnbr(maps->pitch);
 	ft_putchar('\n');
 }
 
@@ -92,4 +95,20 @@ void	affmap(t_maps *maps)
 		ptr = ptr->next;
 	}
 	aff3(maps);
+}
+
+void	aff_position(t_maps *maps)
+{
+	ft_putstr("pos_player_x : ");
+	ft_putnbr(maps->x_pos);
+	ft_putchar('\n');
+	ft_putstr("pos_player_y : ");
+	ft_putnbr(maps->y_pos);
+	ft_putchar('\n');
+	ft_putstr("horizontal angle player : ");
+	ft_putnbr(maps->angle_h * 100);
+	ft_putchar('\n');
+	ft_putstr("pitch : ");
+	ft_putnbr(maps->pitch);
+	ft_putchar('\n');
 }

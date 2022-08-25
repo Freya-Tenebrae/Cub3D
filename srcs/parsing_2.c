@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/16 16:55:25 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:50:45 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ static void	add_pos_player(t_maps **maps, char **l, int i, int n_line)
 		free(*l);
 		error("malloc error", maps);
 	}
-	(*maps)->x_pos = (double)i;
-	(*maps)->y_pos = (double)n_line;
+	(*maps)->x_pos = (double)i + 0.5;
+	(*maps)->y_pos = (double)n_line + 0.5;
 	if ((*l)[i] == 'N')
-		(*maps)->angle = 0;
-	if ((*l)[i] == 'S')
-		(*maps)->angle = 180;
-	if ((*l)[i] == 'E')
-		(*maps)->angle = 90;
-	if ((*l)[i] == 'W')
-		(*maps)->angle = 270;
+		(*maps)->angle_h = 0;
+	else if ((*l)[i] == 'E')
+		(*maps)->angle_h = 0.5;
+	else if ((*l)[i] == 'S')
+		(*maps)->angle_h = 1;
+	else if ((*l)[i] == 'W')
+		(*maps)->angle_h = 1.5;
 }
 
 static void	add_tiles(t_maps **maps, char **l, int i, int n_line)

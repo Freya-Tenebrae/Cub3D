@@ -1,0 +1,14 @@
+NO ./data/wall/wall_basic.xpm
+SO ./data/wall/wall_bricked_door.xpm
+WE ./data/wall/wall_mossy_bricked_door.xpm
+EA ./data/wall/wall_window.xpm
+F 220,100,0
+C 225,30,0
+
+1111111
+100S001
+1000001
+1001001
+1000001
+1000001
+1111111

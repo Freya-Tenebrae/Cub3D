@@ -29,6 +29,8 @@ make bonus
 
 >Tileset	: [Rogue Fantasy Castle](https://szadiart.itch.io/rogue-fantasy-castle)  by szadi art
 
+>Magic wall : [portal]actuallykron.itch.io/32x32-2d-portal-asset-pack
+
 >Cat		: [Catset](https://seethingswarm.itch.io/catset)  by seethingswarm
 
 >Witches	: [Witches pack](https://9e0.itch.io/witches-pack)  by 9e0
