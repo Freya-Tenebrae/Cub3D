@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/24 20:45:21 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:25:05 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@
 /* ************************************************************************** */
 // # define WINDOWS_SIZE_X 2540
 // # define WINDOWS_SIZE_Y 1440
-# define WINDOWS_SIZE_X 1920
-# define WINDOWS_SIZE_Y 1080
+// # define WINDOWS_SIZE_X 1920
+// # define WINDOWS_SIZE_Y 1080
 // # define WINDOWS_SIZE_X 1080
 // # define WINDOWS_SIZE_Y 720
+# define WINDOWS_SIZE_X 720
+# define WINDOWS_SIZE_Y 480
 # define TEXTURE_SIZE_X 64
 # define TEXTURE_SIZE_Y 64
 
@@ -50,11 +52,22 @@
 # define COLOR_PLAYER_MINIMAP 0x000000FF
 # define COLOR_COV_MINIMAP 0x0000FFFF
 
-# define MOUSE_ANGLE 0.005
-# define MOUSE_PITCH 5
-# define KEY_ANGLE 0.05
-# define KEY_MOVE 0.2
+# define MOUSE_ANGLE 0.0005
+# define MOUSE_PITCH 1
+# define KEY_ANGLE 0.02
+# define KEY_MOVE 0.1
 # define KEY_PITCH 10
+
+# define N_KEY 9
+# define KEY_W 0
+# define KEY_A 1
+# define KEY_S 2
+# define KEY_D 3
+# define KEY_E 4
+# define KEY_UP 5
+# define KEY_LEFT 6
+# define KEY_DOWN 7
+# define KEY_RIGHT 8
 
 # define FOV 0.5
 
@@ -96,6 +109,7 @@ typedef struct s_maps
 	int				pitch;
 	int				status_game;
 	int				n_frame;
+	int				key_pressed[N_KEY];
 	void			*mlx;
 	void			*mlx_win;
 	t_myimg			*img;
@@ -155,7 +169,7 @@ void	aff_position(t_maps *maps);
 void	load_textures(t_maps **maps);
 void	event_hook(t_maps **maps);
 void	move(t_maps **maps, int keycode, double range);
-void	rotate(double *angle, short sign, double value);
+void	rotate(double *angle, double value);
 void	change_pitch(int *pitch, int value);
 void	draw_scene(t_maps **maps);
 void	draw_pov(t_maps **maps);

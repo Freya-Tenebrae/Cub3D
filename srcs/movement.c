@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:04:41 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/24 21:34:29 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:21:20 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	move(t_maps **maps, int keycode, double range)
 	anglemvm = 0;
 	if (keycode == 'w')
 		anglemvm = (*maps)->angle_h + 0;
-	else if (keycode == 'd')
+	if (keycode == 'd')
 		anglemvm = (*maps)->angle_h + 0.5;
-	else if (keycode == 's')
+	if (keycode == 's')
 		anglemvm = (*maps)->angle_h + 1;
-	else if (keycode == 'a')
+	if (keycode == 'a')
 		anglemvm = (*maps)->angle_h + 1.5;
 	if (anglemvm > 2)
 		anglemvm = anglemvm - 2;
@@ -69,9 +69,9 @@ void	change_pitch(int *pitch, int value)
 		*pitch = -WINDOWS_SIZE_Y / 2;
 }
 
-void	rotate(double *angle, short sign, double value)
+void	rotate(double *angle, double value)
 {
-	*angle += (value * sign);
+	*angle += (value);
 	if (*angle > 2)
 		*angle = *angle - 2;
 	else if (*angle < 0)

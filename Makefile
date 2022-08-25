@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2022/08/16 17:14:12 by cmaginot         ###   ########.fr        #
+#    Updated: 2022/08/24 19:15:57 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=cub3d
@@ -14,24 +14,46 @@ NAME_BONUS=cub3d_bonus
 
 SRCS=$(addprefix srcs/, cub3d.c\
 						exit.c\
-						init_maps_tiles.c\
+						init_lsts.c\
+						free_lsts.c\
+						update_lsts.c\
 						parsing_1.c\
 						parsing_2.c\
 						parsing_3.c\
 						parsing_4.c\
+						parsing_5.c\
+						load_textures.c\
+						hook.c\
+						movement.c\
+						draw_scene.c\
+						draw_pov.c\
+						draw_pov_utils_1.c\
+						draw_pov_utils_2.c\
+						draw_minimap.c\
 						aff_maps.c)
 SRCS_BONUS=$(addprefix srcs/, cub3d.c\
 						exit.c\
-						init_maps_tiles.c\
+						init_lsts.c\
+						free_lsts.c\
+						update_lsts.c\
 						parsing_1.c\
 						parsing_2.c\
 						parsing_3.c\
 						parsing_4.c\
+						parsing_5.c\
+						load_textures.c\
+						hook.c\
+						movement.c\
+						draw_scene.c\
+						draw_pov.c\
+						draw_pov_utils_1.c\
+						draw_pov_utils_2.c\
+						draw_minimap.c\
 						aff_maps.c)
 OBJS=$(SRCS:.c=.o)
 OBJS_BONUS=$(SRCS_BONUS:.c=.o)
 
-INCS=includes/Bureaucrat.hpp
+INCS=includes/cub3d.h
 INCLUDES=$(addprefix -I , $(INCS))
 
 NAME_LIBFT=libft

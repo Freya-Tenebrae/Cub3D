@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:36:39 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/24 20:01:57 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:33:32 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ t_maps	*init_maps(void)
 		if (!(maps->textures)[i])
 			error("malloc error", &maps);
 	}
+	i = -1;
+	while (++i < N_KEY)
+		maps->key_pressed[i] = 0;
 	fill_maps_with_null(&maps);
 	return (maps);
 }
