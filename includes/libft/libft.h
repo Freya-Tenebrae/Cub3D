@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:31:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/07/03 14:20:54 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/08/26 23:39:50 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ void						ft_putchar(char c);
 void						ft_putstr(char *s);
 void						ft_putendl(char *s);
 void						ft_putnbr(int n);
+char						*ft_strrev(char *str);
 
 #endif

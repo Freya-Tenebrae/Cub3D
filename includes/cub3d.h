@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/25 20:25:05 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/09/09 12:51:12 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 // # define WINDOWS_SIZE_Y 1440
 // # define WINDOWS_SIZE_X 1920
 // # define WINDOWS_SIZE_Y 1080
-// # define WINDOWS_SIZE_X 1080
-// # define WINDOWS_SIZE_Y 720
-# define WINDOWS_SIZE_X 720
-# define WINDOWS_SIZE_Y 480
+# define WINDOWS_SIZE_X 1080
+# define WINDOWS_SIZE_Y 720
+// # define WINDOWS_SIZE_X 720
+// # define WINDOWS_SIZE_Y 480
 # define TEXTURE_SIZE_X 64
 # define TEXTURE_SIZE_Y 64
 
@@ -58,16 +58,15 @@
 # define KEY_MOVE 0.1
 # define KEY_PITCH 10
 
-# define N_KEY 9
+# define N_KEY 8
 # define KEY_W 0
 # define KEY_A 1
 # define KEY_S 2
 # define KEY_D 3
-# define KEY_E 4
-# define KEY_UP 5
-# define KEY_LEFT 6
-# define KEY_DOWN 7
-# define KEY_RIGHT 8
+# define KEY_UP 4
+# define KEY_LEFT 5
+# define KEY_DOWN 6
+# define KEY_RIGHT 7
 
 # define FOV 0.5
 
@@ -149,7 +148,7 @@ int		main(int argc, const char **argv);
 void	success(t_maps **maps);
 void	error(char *str, t_maps **maps);
 void	free_maps(t_maps **maps);
-t_tiles	*init_tile(void);
+t_tiles	*init_tile(t_maps **maps, char **l);
 t_maps	*init_maps(void);
 void	push_tiles_back(t_maps **maps, t_tiles *tiles_to_push);
 void	get_map(t_maps **maps, const char *map_path);
@@ -163,14 +162,18 @@ void	add_id_ceiling_color(t_maps **maps, char **l, int i);
 void	add_line_on_map(t_maps **maps, char **l, int n_line);
 char	*dup_path_value(char **l, int i, t_maps **maps);
 void	check_map_validity(t_maps **maps);
+void	check_validity_textures(t_maps **maps);
 void	check_color_value(t_maps **maps);
 void	affmap(t_maps *maps);
 void	aff_position(t_maps *maps);
 void	load_textures(t_maps **maps);
 void	event_hook(t_maps **maps);
-void	move(t_maps **maps, int keycode, double range);
-void	rotate(double *angle, double value);
+void	event_hook_key(t_maps **maps);
+void	event_hook_mouse(t_maps **maps);
+void	move(t_maps **maps);
+int		is_out_of_wall(t_maps **maps, double x, double y);
 void	change_pitch(int *pitch, int value);
+void	rotate(double *angle, double value);
 void	draw_scene(t_maps **maps);
 void	draw_pov(t_maps **maps);
 void	pre_calc_raycasting_1(t_maps *maps, t_ray *ray, int count_x);

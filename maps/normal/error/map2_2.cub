@@ -1,0 +1,15 @@
+NO ./data/wall_floor_ceiling/wall_basic.xpm
+SO ./data/wall_floor_ceiling/wall_bricked_door.xpm
+
+WE ./data/wall_floor_ceiling/wall_mossy_bricked_door.xpm
+
+
+
+
+EA ./data/wall_floor_ceiling/wall_window.xpm
+
+F 54,46,43
+C 115,133,133
+
+11
+11

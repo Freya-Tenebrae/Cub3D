@@ -1,6 +1,10 @@
-cub3d
+cub3D
+Witch's_Escape
 leak.log
 srcs/*.o
+srcs_bonus/*.o
+objs/
+objs_bonus/
 includes/gnl/get_next_line.a
 includes/gnl/*.o
 includes/libft/libft.a

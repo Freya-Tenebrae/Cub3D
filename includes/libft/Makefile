@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
+#    By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/07/02 13:36:23 by cmaginot         ###   ########.fr        #
+#    Updated: 2022/08/26 23:41:01 by jfremond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRC=ft_memset.c \
 	ft_putchar_fd.c \
 	ft_putstr_fd.c \
 	ft_putendl_fd.c \
-	ft_putnbr_fd.c
+	ft_putnbr_fd.c	\
+	
 SRC_BONUS=ft_lstnew.c \
 	ft_lstadd_front.c \
 	ft_lstsize.c \
@@ -69,7 +70,8 @@ SRC_BONUS=ft_lstnew.c \
 	ft_putchar_bonus.c \
 	ft_putstr_bonus.c \
 	ft_putendl_bonus.c \
-	ft_putnbr_bonus.c
+	ft_putnbr_bonus.c	\
+	ft_strrev_bonus.c	
 OBJS=$(SRC:.c=.o)
 OBJS_BONUS=$(SRC_BONUS:.c=.o)
 

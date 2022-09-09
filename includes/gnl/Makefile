@@ -6,18 +6,18 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/20 15:31:00 by cmaginot          #+#    #+#              #
-#    Updated: 2021/07/20 15:50:32 by cmaginot         ###   ########.fr        #
+#    Updated: 2022/09/09 03:31:46 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=get_next_line.a
+NAME=libgnl.a
 SRCS=get_next_line.c get_next_line_utils.c
 SRCS_BONUS=get_next_line_bonus.c get_next_line_utils_bonus.c
 OBJS=$(SRCS:.c=.o)
 OBJS_BONUS=$(SRCS_BONUS:.c=.o)
 
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -g3
 RM=rm -f
 BUFFER_SIZE=32
 

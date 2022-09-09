@@ -6,19 +6,22 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:36:39 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/25 19:33:32 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/09/09 03:48:48 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-t_tiles	*init_tile(void)
+t_tiles	*init_tile(t_maps **maps, char **l)
 {
 	t_tiles	*tiles;
 
 	tiles = malloc(sizeof(t_tiles));
 	if (!tiles)
-		return (NULL);
+	{
+		free(*l);
+		error("malloc error", maps);
+	}
 	tiles->x_pos = 0;
 	tiles->y_pos = 0;
 	tiles->type = '0';

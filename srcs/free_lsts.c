@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:36:39 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/24 19:52:40 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/09/05 13:00:38 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,37 +37,42 @@ static void	free_img(t_maps **maps, t_myimg **img)
 	}
 }
 
-static void	free_maps_2(t_maps **maps)
+static void	free_textures(t_maps **maps)
 {
-	int		i;
-
-	i = -1;
-	while (++i < N_TEXTURE)
-		if (((*maps)->textures)[i] != NULL)
-			free_img(maps, &(((*maps)->textures)[i]));
-	if ((*maps)->mlx_win != NULL)
-		mlx_destroy_window((*maps)->mlx, (*maps)->mlx_win);
-	free(*maps);
+	if ((*maps)->texture_n != NULL)
+		free((*maps)->texture_n);
+	if ((*maps)->texture_s != NULL)
+		free((*maps)->texture_s);
+	if ((*maps)->texture_e != NULL)
+		free((*maps)->texture_e);
+	if ((*maps)->texture_w != NULL)
+		free((*maps)->texture_w);
+	if ((*maps)->color_f != NULL)
+		free((*maps)->color_f);
+	if ((*maps)->color_c != NULL)
+		free((*maps)->color_c);
 }
 
 void	free_maps(t_maps **maps)
 {
+	int		i;
+
+	i = -1;
 	if (maps != NULL && *maps != NULL)
 	{
 		free_tiles(&((*maps)->tiles));
+		free_textures(maps);
+		while (++i < N_TEXTURE)
+			if (((*maps)->textures)[i] != NULL)
+				free_img(maps, &(((*maps)->textures)[i]));
 		free_img(maps, &((*maps)->img));
-		if ((*maps)->texture_n != NULL)
-			free((*maps)->texture_n);
-		if ((*maps)->texture_s != NULL)
-			free((*maps)->texture_s);
-		if ((*maps)->texture_e != NULL)
-			free((*maps)->texture_e);
-		if ((*maps)->texture_w != NULL)
-			free((*maps)->texture_w);
-		if ((*maps)->color_f != NULL)
-			free((*maps)->color_f);
-		if ((*maps)->color_c != NULL)
-			free((*maps)->color_c);
-		free_maps_2(maps);
+		if ((*maps)->mlx != NULL)
+		{
+			if ((*maps)->mlx_win != NULL)
+				mlx_destroy_window((*maps)->mlx, (*maps)->mlx_win);
+			mlx_destroy_display((*maps)->mlx);
+			free((*maps)->mlx);
+		}
+		free((*maps));
 	}
 }

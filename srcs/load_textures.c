@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/24 13:40:13 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/09/08 05:03:38 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	load_wall_n(t_maps **maps, int texture_size_x, int texture_size_y)
 	((*maps)->textures)[TEXTURE_WALL_N]->img_ptr = \
 		mlx_xpm_file_to_image((*maps)->mlx, (*maps)->texture_n, \
 			&texture_size_x, &texture_size_y);
+	if (!((*maps)->textures)[TEXTURE_WALL_N]->img_ptr)
+		error("couldn't load wall texture", maps);
 	((*maps)->textures)[TEXTURE_WALL_N]->data = \
 		(int *)mlx_get_data_addr(((*maps)->textures)[TEXTURE_WALL_N]->img_ptr, \
 		&(((*maps)->textures)[TEXTURE_WALL_N]->bpp), \
@@ -29,6 +31,8 @@ static void	load_wall_e(t_maps **maps, int texture_size_x, int texture_size_y)
 	((*maps)->textures)[TEXTURE_WALL_E]->img_ptr = \
 		mlx_xpm_file_to_image((*maps)->mlx, (*maps)->texture_e, \
 			&texture_size_x, &texture_size_y);
+	if (!((*maps)->textures)[TEXTURE_WALL_E]->img_ptr)
+		error("couldn't load wall texture", maps);
 	((*maps)->textures)[TEXTURE_WALL_E]->data = \
 		(int *)mlx_get_data_addr(((*maps)->textures)[TEXTURE_WALL_E]->img_ptr, \
 		&(((*maps)->textures)[TEXTURE_WALL_E]->bpp), \
@@ -41,6 +45,8 @@ static void	load_wall_s(t_maps **maps, int texture_size_x, int texture_size_y)
 	((*maps)->textures)[TEXTURE_WALL_S]->img_ptr = \
 		mlx_xpm_file_to_image((*maps)->mlx, (*maps)->texture_s, \
 			&texture_size_x, &texture_size_y);
+	if (!((*maps)->textures)[TEXTURE_WALL_S]->img_ptr)
+		error("couldn't load wall texture", maps);
 	((*maps)->textures)[TEXTURE_WALL_S]->data = \
 		(int *)mlx_get_data_addr(((*maps)->textures)[TEXTURE_WALL_S]->img_ptr, \
 		&(((*maps)->textures)[TEXTURE_WALL_S]->bpp), \
@@ -53,6 +59,8 @@ static void	load_wall_w(t_maps **maps, int texture_size_x, int texture_size_y)
 	((*maps)->textures)[TEXTURE_WALL_W]->img_ptr = \
 		mlx_xpm_file_to_image((*maps)->mlx, (*maps)->texture_w, \
 			&texture_size_x, &texture_size_y);
+	if (!((*maps)->textures)[TEXTURE_WALL_W]->img_ptr)
+		error("couldn't load wall texture", maps);
 	((*maps)->textures)[TEXTURE_WALL_W]->data = \
 		(int *)mlx_get_data_addr(((*maps)->textures)[TEXTURE_WALL_W]->img_ptr, \
 		&(((*maps)->textures)[TEXTURE_WALL_W]->bpp), \

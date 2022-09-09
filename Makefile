@@ -5,101 +5,190 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2022/08/24 19:15:57 by cmaginot         ###   ########.fr        #
+#    Created: 2022/08/25 23:07:55 by jfremond          #+#    #+#              #
+#    Updated: 2022/09/09 12:54:11 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME=cub3d
-NAME_BONUS=cub3d_bonus
 
-SRCS=$(addprefix srcs/, cub3d.c\
-						exit.c\
-						init_lsts.c\
-						free_lsts.c\
-						update_lsts.c\
-						parsing_1.c\
-						parsing_2.c\
-						parsing_3.c\
-						parsing_4.c\
-						parsing_5.c\
-						load_textures.c\
-						hook.c\
-						movement.c\
-						draw_scene.c\
-						draw_pov.c\
-						draw_pov_utils_1.c\
-						draw_pov_utils_2.c\
-						draw_minimap.c\
-						aff_maps.c)
-SRCS_BONUS=$(addprefix srcs/, cub3d.c\
-						exit.c\
-						init_lsts.c\
-						free_lsts.c\
-						update_lsts.c\
-						parsing_1.c\
-						parsing_2.c\
-						parsing_3.c\
-						parsing_4.c\
-						parsing_5.c\
-						load_textures.c\
-						hook.c\
-						movement.c\
-						draw_scene.c\
-						draw_pov.c\
-						draw_pov_utils_1.c\
-						draw_pov_utils_2.c\
-						draw_minimap.c\
-						aff_maps.c)
-OBJS=$(SRCS:.c=.o)
-OBJS_BONUS=$(SRCS_BONUS:.c=.o)
+##################
+#   EXECUTABLE   #
+##################
 
-INCS=includes/cub3d.h
-INCLUDES=$(addprefix -I , $(INCS))
+NAME			=	cub3D
 
-NAME_LIBFT=libft
-NAME_GNL=get_next_line
-LIBFT=includes/libft
-GNL=includes/gnl
-MLX=includes/mlx
+NAME_BONUS_1	=	Witch\'s_Escape
 
-CC=clang -g
-CFLAGS=-Wall -Wextra -Werror -g3
-CMLXFLAGS= -L/usr/lib -lXext -lX11 -L$(MLX) -lm -lz
-RM=rm -f
+NAME_BONUS_2	=	catch_them_all
 
-all: $(NAME)
+################
+#   COMMANDS   #
+################
 
-bonus: $(NAME_BONUS)
+CC			=	clang
+LINK		=	clang
+MKDIR		=	/usr/bin/mkdir -p
+RM			=	/usr/bin/rm -rf
 
-$(NAME): $(OBJS)
-	make -C $(LIBFT) bonus
-	make -C $(GNL)
-	make -C $(MLX)
-	$(CC) $(CFLAGS) $^ -o $@ $(CMLXFLAGS) $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
+#############
+#   FLAGS   #
+#############
 
-$(NAME_BONUS): $(OBJS_BONUS)
-	make -C $(LIBFT) bonus
-	make -C $(GNL)
-	make -C $(MLX)
-	$(CC) $(CFLAGS) $^ -o $@ $(CMLXFLAGS) $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
+CFLAGS		=	-Wall -Wextra -Werror -c -g3
+CFLAGS		+=	-I $(INCS)
+CFLAGS		+=	-MMD -MP -I$(MLX_D) -I$(GNL_D) -I$(LIBFT_D)
+LDFLAGS		=	-L$(LIBFT_D) -lft -lXext -lX11 -lm -L$(MLX_D) -lmlx -L$(GNL_D) -lgnl
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
+###################
+#   DIRECTORIES   #
+###################
+
+INCS		=	includes/
+
+LIBFT_D		=	$(addprefix $(INCS), libft/)
+MLX_D		=	$(addprefix $(INCS), mlx/)
+GNL_D		=	$(addprefix $(INCS), gnl/)
+SRCS_D		=	srcs/
+SRCS_BONUS_D		=	srcs_bonus/
+OBJS_D		=	objs/
+OBJS_BONUS_D		=	objs_bonus/
+
+##################
+#   LIBRAIRIES   #
+##################
+
+LIBFT_A		=	libft.a
+LIBFT_A		:=	$(addprefix $(LIBFT_D), $(LIBFT_A))
+
+LIBMLX_A	=	libmlx.a
+LIBMLX_A	:=	$(addprefix $(MLX_D), $(LIBMLX_A))
+
+GNL_A		=	libgnl.a
+GNL_A		:=	$(addprefix $(GNL_D), $(GNL_A))
+
+###############
+#   SOURCES   #
+###############
+
+SRCS	=	cub3d.c	\
+			exit.c\
+			init_lsts.c\
+			free_lsts.c\
+			update_lsts.c\
+			parsing_1.c\
+			parsing_2.c\
+			parsing_3.c\
+			parsing_4.c\
+			parsing_5.c\
+			load_textures.c\
+			hook.c\
+			hook_key.c\
+			hook_mouse.c\
+			movement.c\
+			movement_out_of_wall.c\
+			draw_scene.c\
+			draw_pov.c\
+			draw_pov_utils_1.c\
+			draw_pov_utils_2.c\
+			draw_minimap.c\
+			aff_maps.c\
+			check_validity_textures.c
+
+SRCS_BONUS	=	cub3d.c	\
+				exit.c\
+				init_lsts.c\
+				free_lsts.c\
+				update_lsts.c\
+				parsing_1.c\
+				parsing_2.c\
+				parsing_3.c\
+				load_textures.c\
+				hook.c\
+				hook_key.c\
+				hook_mouse.c\
+				movement.c\
+				movement_out_of_wall.c\
+				draw_scene.c\
+				draw_pov.c\
+				draw_pov_floor.c\
+				draw_pov_utils_1.c\
+				draw_pov_utils_2.c\
+				draw_minimap.c\
+				check_validity_textures.c\
+				time_tool.c
+
+###############
+#   OBJECTS   #
+###############
+
+OBJS		=	$(SRCS:.c=.o)
+OBJS		:=	$(addprefix $(OBJS_D), $(OBJS))
+
+
+OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
+OBJS_BONUS	:=	$(addprefix $(OBJS_BONUS_D), $(OBJS_BONUS))
+
+####################
+#   DEPENDENCIES   #
+####################
+
+DEP			=	$(OBJS:.o=.d) $(OBJS_BONUS:.o=.d)
+
+#############
+#   RULES   #
+#############
+
+all:		$(NAME)
+
+$(NAME):	$(OBJS) $(LIBFT_A) $(LIBMLX_A) $(GNL_A)
+			$(LINK) $(OBJS) $(LDFLAGS) $(OUTPUT_OPTION)
+
+bonus:			$(NAME_BONUS_1)
+
+$(NAME_BONUS_1):	$(OBJS_BONUS) $(LIBFT_A) $(LIBMLX_A) $(GNL_A)
+					$(LINK) $(OBJS_BONUS) $(LDFLAGS) $(OUTPUT_OPTION)
+
+-include $(DEP)
+
+$(OBJS_D)%.o:		$(SRCS_D)%.c
+					$(MKDIR) $(@D)
+					$(CC) $(CFLAGS) $(OUTPUT_OPTION) $<
+
+$(OBJS_D)%.o:		$(GNL_D)%.c
+					$(CC) $(CFLAGS) $(OUTPUT_OPTION) $<
+
+$(OBJS_BONUS_D)%.o:		$(SRCS_BONUS_D)%.c
+					$(MKDIR) $(@D)
+					$(CC) $(CFLAGS) $(OUTPUT_OPTION) $<
+
+$(OBJS_BONUS_D)%.o:		$(GNL_D)%.c
+					$(CC) $(CFLAGS) $(OUTPUT_OPTION) $<
+
+$(MLX_D)libmlx.a:
+					$(MAKE) -C $(MLX_D)
+
+$(LIBFT_D)libft.a:
+					$(MAKE) $(@F) -C $(@D) bonus
+
+$(GNL_D)libgnl.a:
+					$(MAKE) $(@F) -C $(@D)
 
 clean:
-	make clean -C $(LIBFT)
-	make clean -C $(GNL)
-	make clean -C $(MLX)
-	$(RM) $(OBJS) $(OBJS_BONUS)
+				$(MAKE) clean -C $(MLX_D)
+				$(MAKE) clean -C $(LIBFT_D)
+				$(MAKE) clean -C $(GNL_D)
+				$(RM) $(OBJS_D)
 
-fclean: clean
-	make fclean -C $(LIBFT)
-	make fclean -C $(GNL)
-	$(RM) $(NAME) $(NAME_BONUS)
+fclean:			clean
+				$(MAKE) fclean -C $(LIBFT_D)
+				$(MAKE) fclean -C $(GNL_D)
+				$(RM) $(NAME) $(NAME_BONUS)
 
-re: fclean all
-	make all
+re:				fclean all
 
-re_bonus: fclean bonus
-			make all
-# valgrind --leak-check=full --show-leak-kinds=all ./cub3d maps/test.cub 2> leak.log
+re_bonus:		fclean bonus
+
+malloc_test:	$(OBJS) $(LIBFT_A) $(LIBMLX_A) $(GNL_A)
+				$(LINK) $(LDFLAGS) -fsanitize=undefined -rdynamic -o $@ ${OBJS} $(LIBFT_A) $(LIBMLX_A) $(GNL_A) -L. -lmallocator
+
+.PHONY:			all clean fclean re bonus re_bonus
+

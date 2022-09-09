@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:24:51 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/24 20:35:13 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/08/29 18:04:34 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	get_perpendicular_distances_first_wall(t_maps *maps, t_ray *ray)
 
 static void	get_y_needed_value(t_maps *map, t_ray *ray)
 {
-	ray->height = (int)(WINDOWS_SIZE_Y / ray->perpendicular_distance);
+	ray->height = (int)(WINDOWS_SIZE_Y / ray->perpendicular_distance * 1);
 	ray->start = -ray->height / 2 + WINDOWS_SIZE_Y / 2 + map->pitch;
 	ray->end = ray->height / 2 + WINDOWS_SIZE_Y / 2 + map->pitch;
 	if (ray->start < 0)

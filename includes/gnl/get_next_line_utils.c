@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 00:14:30 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/21 16:33:07 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/09/09 03:35:39 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ size_t	ft_strlen_gnl(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (s == 0)
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
@@ -76,6 +78,8 @@ char	*ft_strndup_gnl(const char *s1, size_t n)
 	char	*str;
 	size_t	i;
 
+	if (s1 == 0)
+		return (NULL);
 	str = malloc((n + 1) * sizeof(char));
 	if (!str)
 		return (0);

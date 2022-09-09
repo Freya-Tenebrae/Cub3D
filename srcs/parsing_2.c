@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/24 16:50:45 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/09/09 03:44:36 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	add_pos_player(t_maps **maps, char **l, int i, int n_line)
 	if ((*maps)->x_pos != 0 || (*maps)->y_pos != 0)
 	{
 		free(*l);
-		error("malloc error", maps);
+		error("parsing : second definition of character start", maps);
 	}
 	(*maps)->x_pos = (double)i + 0.5;
 	(*maps)->y_pos = (double)n_line + 0.5;
@@ -65,12 +65,7 @@ static void	add_tiles(t_maps **maps, char **l, int i, int n_line)
 
 	if ((*l)[i] != ' ')
 	{
-		tmptile = init_tile();
-		if (tmptile == NULL)
-		{
-			free(*l);
-			error("malloc error", maps);
-		}
+		tmptile = init_tile(maps, l);
 		tmptile->x_pos = i;
 		tmptile->y_pos = n_line;
 		tmptile->type = (*l)[i];
@@ -99,7 +94,7 @@ void	add_line_on_map(t_maps **maps, char **l, int n_line)
 		else
 		{
 			free(*l);
-			error("parsing : incalid character on map", maps);
+			error("parsing : invalid character on map", maps);
 		}
 		i++;
 	}
