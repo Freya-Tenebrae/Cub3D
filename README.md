@@ -19,22 +19,42 @@ You can move throught
 git clone --recurse-submodules https://github.com/Freya-Tenebrae/Cub3D.git
 ```
 
-### Compilation
+### Cub3D
 
-for classic Cub3D :
+On Cub3dD there is no door, no entities, no pickup, no end, no action possible (exept movement) and textures are defined by wall orientation
+
+#### Compilation
+
 ```shell
 make
 ```
-for advenced Cub3D :
-```shell
-make bonus
-```
 
-### launch
+#### launch
 
 ```shell
 ./cub3d maps/test.cub
 ```
+
+### Witch's_Escape
+
+Witch's escape is an advenced version of cub3D, textures depend on map and some texture are animated.
+Movement depend on time and not on processor speed.
+Exit, pickup (and entities if i take the time to code them) are present and you can interact with them.
+
+Possible upgrade : add ATH, timer and score, ...
+
+#### Compilation
+
+```shell
+make bonus
+```
+
+#### launch
+
+```shell
+./Witch\'s_Escape maps/advanced/advanced1.cub
+```
+
 ### keys
 
 - esc : exit
@@ -47,11 +67,7 @@ make bonus
 - ↓ : look down
 - → : look right
 - e : interact (bonus only)
-- left click : transform a witch in a cat (bonus only)
-
-### bonus (not done already)
-
-The advanced minishell add floor and ceiling textures, doors, animations, pickup and entities, speel, a basic ATH and more
+- left click : transform a witch in a cat (bonus only) (nif i take the time to code them)
 
 ## Credits
 
@@ -64,3 +80,5 @@ The advanced minishell add floor and ceiling textures, doors, animations, pickup
 >Witches	: [Witches pack](https://9e0.itch.io/witches-pack)  by 9e0
 
 >Pickup	: [32x32 in game items asset pack](https://beyonderboy.itch.io/32x32-in-game-items-asset-pack)  by beyonderboy
+
+>Pickup (cristal) : [Kyrise's Free 16x16 RPG Icon Pack](https://kyrise.itch.io/kyrises-free-16x16-rpg-icon-pack) by Kyrise
