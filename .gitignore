@@ -5,7 +5,8 @@ srcs/*.o
 srcs_bonus/*.o
 objs/
 objs_bonus/
-includes/gnl/get_next_line.a
+ft_mallocator/
+includes/gnl/libgnl.a
 includes/gnl/*.o
 includes/libft/libft.a
 includes/libft/*.o

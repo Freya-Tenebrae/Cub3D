@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_pov_utils_2.c                                 :+:      :+:    :+:   */
+/*   draw_pov_utils_2_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/20 16:24:51 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/09 11:58:37 by cmaginot         ###   ########.fr       */
+/*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
+/*   Updated: 2022/09/29 19:04:01 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	hit_wall(t_maps *maps, t_ray *ray)
 	while (tileptr != NULL)
 	{
 		if (tileptr->x_pos == ray->pointing_position[0] && tileptr->y_pos == \
-							ray->pointing_position[1] && \
-							(tileptr->type == '1' || tileptr->type == '2' || \
-							tileptr->type == '3' || tileptr->type == '4' || \
-							tileptr->type == '5' || tileptr->type == '6'))
+						ray->pointing_position[1] && \
+						((tileptr->type >= '1' && tileptr->type <= '6') || \
+						(tileptr->type >= 'A' && tileptr->type <= 'D') || \
+						(tileptr->type >= 'F' && tileptr->type <= 'H')))
 			return (1);
 		tileptr = tileptr->next;
 	}
@@ -81,10 +81,17 @@ static int	get_right_texture(t_maps *maps, t_ray *ray, t_texture *text)
 	{
 		if (tiles_ptr->x_pos == ray->pointing_position[0] && \
 			tiles_ptr->y_pos == ray->pointing_position[1])
-			text->number_texture = tiles_ptr->type - 48;
+		{
+			if (tiles_ptr->type >= '1' && tiles_ptr->type <= '6')
+				text->number_texture = tiles_ptr->type - '0';
+			else if (tiles_ptr->type >= 'A' && tiles_ptr->type <= 'D')
+				text->number_texture = tiles_ptr->type - 'A' + 7;
+			else if (tiles_ptr->type >= 'F' && tiles_ptr->type <= 'H')
+				text->number_texture = tiles_ptr->type - 'A' + 6;
+		}
 		tiles_ptr = tiles_ptr->next;
 	}
-	if (text->number_texture <= 0 || text->number_texture > 6)
+	if (text->number_texture <= 0 || text->number_texture > 13)
 		return (0);
 	return (1);
 }

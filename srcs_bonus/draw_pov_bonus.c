@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_pov.c                                         :+:      :+:    :+:   */
+/*   draw_pov_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:24:51 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/09 11:55:32 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:15:36 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
-
-static int	get_right_color_texture(t_maps **maps, t_texture *text)
-{
-	int	skip_to_right_texture;
-	int	skip_to_right_lign;
-	int	skip_to_right_frame;
-
-	skip_to_right_texture = text->number_texture * N_FRAME * TEXTURE_SIZE_X * \
-							TEXTURE_SIZE_Y;
-	skip_to_right_lign = N_FRAME * TEXTURE_SIZE_X * text->texture_position[1];
-	skip_to_right_frame = (*maps)->n_frame * TEXTURE_SIZE_X;
-	return (((*maps)->textures_wall_floor->data)[skip_to_right_texture + \
-		skip_to_right_lign + skip_to_right_frame + text->texture_position[0]]);
-}
 
 static void	get_step_and_position_on_texture(t_maps *maps, t_ray *ray, \
 	t_texture *text)
@@ -39,6 +25,20 @@ static void	get_step_and_position_on_texture(t_maps *maps, t_ray *ray, \
 	text->step = ((double)TEXTURE_SIZE_Y / (double)ray->height);
 	text->pos_start_texture = text->step * (ray->start - WINDOWS_SIZE_Y / 2 + \
 												ray->height / 2 - maps->pitch);
+}
+
+static int	get_right_color_texture(t_maps **maps, t_texture *text)
+{
+	int	skip_to_right_texture;
+	int	skip_to_right_lign;
+	int	skip_to_right_frame;
+
+	skip_to_right_texture = text->number_texture * N_FRAME * TEXTURE_SIZE_X * \
+							TEXTURE_SIZE_Y;
+	skip_to_right_lign = N_FRAME * TEXTURE_SIZE_X * text->texture_position[1];
+	skip_to_right_frame = (*maps)->n_frame * TEXTURE_SIZE_X;
+	return (((*maps)->textures_wall_floor->data)[skip_to_right_texture + \
+		skip_to_right_lign + skip_to_right_frame + text->texture_position[0]]);
 }
 
 static void	draw_column(t_maps **maps, int count_x, t_ray *ray, t_texture *text)
@@ -74,5 +74,6 @@ void	draw_pov(t_maps **maps)
 		pre_calc_raycasting_2(*maps, &ray, &text);
 		get_step_and_position_on_texture(*maps, &ray, &text);
 		draw_column(maps, count_x, &ray, &text);
+		(*maps)->z_buffer[count_x] = ray.perpendicular_distance;
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_pov_floor.c                                   :+:      :+:    :+:   */
+/*   draw_pov_floor_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 10:13:07 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/09 12:37:37 by cmaginot         ###   ########.fr       */
+/*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
+/*   Updated: 2022/09/29 19:03:12 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,34 @@ static void	get_plane(t_maps **maps, t_floor *floor)
 
 static void	get_ray_directions(t_maps **maps, t_floor *floor, int count_y)
 {
-	floor->rayDirectionRmv[0] = floor->direction[0] - floor->plane[0];
-	floor->rayDirectionRmv[1] = floor->direction[1] - floor->plane[1];
-	floor->rayDirectionAdd[0] = floor->direction[0] + floor->plane[0];
-	floor->rayDirectionAdd[1] = floor->direction[1] + floor->plane[1];
-	floor->verticalPositionFromCenter = count_y - WINDOWS_SIZE_Y / 2 - \
+	floor->ray_direction_rmv[0] = floor->direction[0] - floor->plane[0];
+	floor->ray_direction_rmv[1] = floor->direction[1] - floor->plane[1];
+	floor->ray_direction_add[0] = floor->direction[0] + floor->plane[0];
+	floor->ray_direction_add[1] = floor->direction[1] + floor->plane[1];
+	floor->vertical_position_from_center = count_y - WINDOWS_SIZE_Y / 2 - \
 																(*maps)->pitch;
-	floor->rowDistances = 0.5 * WINDOWS_SIZE_Y / \
-											floor->verticalPositionFromCenter;
-	floor->delta_distance[0] = floor->rowDistances * \
-					(floor->rayDirectionAdd[0] - floor->rayDirectionRmv[0]) / \
+	floor->row_distances = 0.5 * WINDOWS_SIZE_Y / \
+										floor->vertical_position_from_center;
+	floor->delta_distance[0] = floor->row_distances * \
+				(floor->ray_direction_add[0] - floor->ray_direction_rmv[0]) / \
 																WINDOWS_SIZE_X;
-	floor->delta_distance[1] = floor->rowDistances * \
-					(floor->rayDirectionAdd[1] - floor->rayDirectionRmv[1]) / \
+	floor->delta_distance[1] = floor->row_distances * \
+				(floor->ray_direction_add[1] - floor->ray_direction_rmv[1]) / \
 																WINDOWS_SIZE_X;
-	floor->floor[0] = (*maps)->x_pos + floor->rowDistances * \
-													floor->rayDirectionRmv[0];
-	floor->floor[1] = (*maps)->y_pos + floor->rowDistances * \
-													floor->rayDirectionRmv[1];
+	floor->floor[0] = (*maps)->x_pos + floor->row_distances * \
+													floor->ray_direction_rmv[0];
+	floor->floor[1] = (*maps)->y_pos + floor->row_distances * \
+													floor->ray_direction_rmv[1];
+}
+
+static void	calc_pixel(t_floor *floor)
+{
+	floor->t[0] = (int)(TEXTURE_SIZE_X * (floor->floor[0] - \
+			(int)floor->floor[0])) & (TEXTURE_SIZE_X - 1);
+	floor->t[1] = (int)(TEXTURE_SIZE_X * (floor->floor[1] - \
+			(int)floor->floor[1])) & (TEXTURE_SIZE_X - 1);
+	floor->floor[0] += floor->delta_distance[0];
+	floor->floor[1] += floor->delta_distance[1];
 }
 
 static void	print_floor(t_maps **maps, t_floor *floor, int count_x, int count_y)
@@ -52,16 +62,6 @@ static void	print_floor(t_maps **maps, t_floor *floor, int count_x, int count_y)
 	(*maps)->img->data[count_y * WINDOWS_SIZE_X + count_x] = \
 		((*maps)->textures_wall_floor->data)[skip_to_right_lign + \
 		skip_to_right_frame + floor->t[0]];
-}
-
-static void	calc_pixel(t_floor *floor)
-{
-	floor->t[0] = (int)(TEXTURE_SIZE_X * (floor->floor[0] - \
-			(int)floor->floor[0])) & (TEXTURE_SIZE_X - 1);
-	floor->t[1] = (int)(TEXTURE_SIZE_X * (floor->floor[1] - \
-			(int)floor->floor[1])) & (TEXTURE_SIZE_X - 1);
-	floor->floor[0] += floor->delta_distance[0];
-	floor->floor[1] += floor->delta_distance[1];
 }
 
 void	draw_floor(t_maps **maps)

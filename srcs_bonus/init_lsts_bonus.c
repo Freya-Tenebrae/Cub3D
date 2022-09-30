@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_lsts.c                                        :+:      :+:    :+:   */
+/*   init_lsts_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 11:36:39 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/09 07:54:22 by cmaginot         ###   ########.fr       */
+/*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
+/*   Updated: 2022/09/30 13:54:59 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static t_myimg	*init_img(void)
 
 static void	fill_maps_with_null(t_maps **maps)
 {
+	int	i;
+
 	(*maps)->x_lenght = 0;
 	(*maps)->y_lenght = 0;
 	(*maps)->x_pos = 0;
@@ -57,6 +59,9 @@ static void	fill_maps_with_null(t_maps **maps)
 	(*maps)->mlx_win = NULL;
 	(*maps)->n_frame = 0;
 	(*maps)->tiles = NULL;
+	i = -1;
+	while (++i < WINDOWS_SIZE_X)
+		(*maps)->z_buffer[i] = 0.0;
 }
 
 t_maps	*init_maps(void)
@@ -80,6 +85,9 @@ t_maps	*init_maps(void)
 	i = -1;
 	while (++i < N_KEY)
 		maps->key_pressed[i] = 0;
+	i = -1;
+	while (++i < N_DOOR)
+		maps->cristal_get[i] = 0;
 	fill_maps_with_null(&maps);
 	return (maps);
 }

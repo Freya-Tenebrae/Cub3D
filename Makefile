@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/25 23:07:55 by jfremond          #+#    #+#              #
-#    Updated: 2022/09/09 12:54:11 by cmaginot         ###   ########.fr        #
+#    Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#              #
+#    Updated: 2022/09/30 17:28:31 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,28 +93,31 @@ SRCS	=	cub3d.c	\
 			aff_maps.c\
 			check_validity_textures.c
 
-SRCS_BONUS	=	cub3d.c	\
-				exit.c\
-				init_lsts.c\
-				free_lsts.c\
-				update_lsts.c\
-				parsing_1.c\
-				parsing_2.c\
-				parsing_3.c\
-				load_textures.c\
-				hook.c\
-				hook_key.c\
-				hook_mouse.c\
-				movement.c\
-				movement_out_of_wall.c\
-				draw_scene.c\
-				draw_pov.c\
-				draw_pov_floor.c\
-				draw_pov_utils_1.c\
-				draw_pov_utils_2.c\
-				draw_minimap.c\
-				check_validity_textures.c\
-				time_tool.c
+SRCS_BONUS	=	cub3d_bonus.c	\
+				exit_bonus.c\
+				init_lsts_bonus.c\
+				free_lsts_bonus.c\
+				update_lsts_bonus.c\
+				parsing_1_bonus.c\
+				parsing_2_bonus.c\
+				parsing_3_bonus.c\
+				load_textures_bonus.c\
+				hook_bonus.c\
+				hook_key_bonus.c\
+				hook_mouse_bonus.c\
+				movement_bonus.c\
+				movement_out_of_wall_bonus.c\
+				draw_scene_bonus.c\
+				draw_pov_bonus.c\
+				draw_pov_floor_bonus.c\
+				draw_pov_entities_bonus.c\
+				draw_pov_utils_1_bonus.c\
+				draw_pov_utils_2_bonus.c\
+				draw_pov_entities_util_bonus.c\
+				draw_minimap_bonus.c\
+				check_validity_textures_bonus.c\
+				time_tool_bonus.c\
+				action_bonus.c
 
 ###############
 #   OBJECTS   #
@@ -176,12 +179,12 @@ clean:
 				$(MAKE) clean -C $(MLX_D)
 				$(MAKE) clean -C $(LIBFT_D)
 				$(MAKE) clean -C $(GNL_D)
-				$(RM) $(OBJS_D)
+				$(RM) $(OBJS_D) $(OBJS_BONUS_D)
 
 fclean:			clean
 				$(MAKE) fclean -C $(LIBFT_D)
 				$(MAKE) fclean -C $(GNL_D)
-				$(RM) $(NAME) $(NAME_BONUS)
+				$(RM) $(NAME) $(NAME_BONUS_1)
 
 re:				fclean all
 

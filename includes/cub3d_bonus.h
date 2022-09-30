@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/09 14:02:52 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:28:02 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define ARROW_UP 65364
 # define ARROW_DOWN 65362
 
-# define PATH_TEXTURES_ENTITIES "data/wallFloorTextures.xpm"
+# define PATH_TEXTURES_ENTITIES "data/entities.xpm"
 # define PATH_TEXTURES_WALL_FLOOR "data/wallFloorTextures.xpm"
 
 # define COLOR_WALL_MINIMAP 0x00800080
@@ -67,6 +67,8 @@
 # define KEY_LEFT 5
 # define KEY_DOWN 6
 # define KEY_RIGHT 7
+
+# define N_DOOR 7
 
 # define FOV 0.5
 
@@ -103,12 +105,14 @@ typedef struct s_maps
 	int				pitch;
 	int				n_frame;
 	int				key_pressed[N_KEY];
+	int				cristal_get[N_DOOR];
 	void			*mlx;
 	void			*mlx_win;
 	t_myimg			*img;
 	t_myimg			*textures_entities;
 	t_myimg			*textures_wall_floor;
 	t_tiles			*tiles;
+	double			z_buffer[WINDOWS_SIZE_X];
 }					t_maps;
 
 typedef struct s_ray
@@ -130,10 +134,10 @@ typedef struct s_floor
 {
 	double			direction[2];
 	double			plane[2];
-	double			rayDirectionRmv[2];
-	double			rayDirectionAdd[2];
-	int				verticalPositionFromCenter;
-	double			rowDistances;
+	double			ray_direction_rmv[2];
+	double			ray_direction_add[2];
+	int				vertical_position_from_center;
+	double			row_distances;
 	double			delta_distance[2];
 	double			floor[2];
 	int				t[2];
@@ -141,15 +145,35 @@ typedef struct s_floor
 	int				count_y;
 }					t_floor;
 
+typedef struct s_entitie
+{
+	double			direction[2];
+	double			plane[2];
+	double			pos_absolute[2];
+	double			pos_relative[2];
+	double			depth;
+	int				x_pos_on_screen;
+	int				height_and_width;
+	int				start[2];
+	int				end[2];
+}					t_entitie;
+
 typedef struct s_texture
 {
-	int				texture_number;
 	double			position_x_on_wall;
 	int				texture_position[2];
 	double			step;
 	double			pos_start_texture;
 	int				number_texture;
 }					t_texture;
+
+typedef struct s_texture_entitie
+{
+	double			step;
+	double			pos_start_texture[2];
+	int				texture_position[2];
+	int				number_texture;
+}					t_texture_entitie;
 
 /* ************************************************************************** */
 /*                                  FONCTION                                  */
@@ -178,9 +202,12 @@ void	update_frame(t_maps **maps);
 void	draw_scene(t_maps **maps);
 void	draw_pov(t_maps **maps);
 void	draw_floor(t_maps **maps);
+void	draw_entities(t_maps **maps);
 void	pre_calc_raycasting_1(t_maps *maps, t_ray *ray, int count_x);
 void	pre_calc_raycasting_2(t_maps *maps, t_ray *ray, t_texture *text);
+void	pre_calc_raycasting_entities(t_maps *maps, t_entitie *entitie);
 void	draw_minimap(t_maps **maps);
+void	action(t_maps **maps);
 
 /* ************************************************************************** */
 /*                                    END                                     */

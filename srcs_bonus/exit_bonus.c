@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_lsts.c                                      :+:      :+:    :+:   */
+/*   exit_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 11:36:39 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/09 06:06:28 by cmaginot         ###   ########.fr       */
+/*   Created: 2022/08/16 11:48:49 by cmaginot          #+#    #+#             */
+/*   Updated: 2022/09/29 19:00:02 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-void	push_tiles_back(t_maps **maps, t_tiles *tiles_to_push)
+void	success(t_maps **maps)
 {
-	t_tiles	*tilesptr;
+	ft_putstr_fd("\033[0;32mThe program 'cub3d' has been correclty ", 1);
+	ft_putstr_fd("executed.\n\033[0m", 1);
+	free_maps(maps);
+	exit(EXIT_SUCCESS);
+}
 
-	tilesptr = (*maps)->tiles;
-	if ((*maps)->tiles == NULL)
-		(*maps)->tiles = tiles_to_push;
-	else
-	{
-		while (tilesptr->next != NULL)
-			tilesptr = tilesptr->next;
-		tilesptr->next = tiles_to_push;
-	}
+void	error(char *str, t_maps **maps)
+{
+	ft_putstr_fd("\033[0;31mError :\n", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("!\n\033[0m", 2);
+	free_maps(maps);
+	exit(EXIT_FAILURE);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_scene.c                                       :+:      :+:    :+:   */
+/*   draw_scene_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/20 16:24:51 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/09 06:05:47 by cmaginot         ###   ########.fr       */
+/*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
+/*   Updated: 2022/09/29 19:38:57 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	draw_scene(t_maps **maps)
 		(*maps)->img->img_ptr, &((*maps)->img->bpp), \
 		&((*maps)->img->size_l), &((*maps)->img->endian));
 	draw_pov(maps);
+	draw_entities(maps);
 	draw_minimap(maps);
 	mlx_put_image_to_window((*maps)->mlx, (*maps)->mlx_win, \
 						(*maps)->img->img_ptr, 0, 0);

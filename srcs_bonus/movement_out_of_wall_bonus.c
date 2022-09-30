@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement_out_of_wall.c                             :+:      :+:    :+:   */
+/*   movement_out_of_wall_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 11:04:41 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/09 14:00:41 by cmaginot         ###   ########.fr       */
+/*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
+/*   Updated: 2022/09/29 19:05:34 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int	is_out_of_wall_opposite_value(t_maps **maps, double x, double y, \
 	while (tiles_ptr != NULL)
 	{
 		if (f_xpos == tiles_ptr->x_pos && f_ypos == tiles_ptr->y_pos && \
-			(tiles_ptr->type == '1' || tiles_ptr->type == '2' || \
-			tiles_ptr->type == '3' || tiles_ptr->type == '4' || \
-			tiles_ptr->type == '5' || tiles_ptr->type == '6'))
+			((tiles_ptr->type >= '1' && tiles_ptr->type <= '6') || \
+			(tiles_ptr->type >= 'A' && tiles_ptr->type <= 'D') || \
+			(tiles_ptr->type >= 'F' && tiles_ptr->type <= 'H')))
 		{
 			if (f_xpos != tiles_ptr->x_pos && f_xpos != x)
 				(*maps)->x_pos = x;
@@ -53,9 +53,9 @@ static int	is_out_of_wall_same_value(t_maps **maps, double x, double y, \
 	while (tiles_ptr != NULL)
 	{
 		if (f_xpos == tiles_ptr->x_pos && f_ypos == tiles_ptr->y_pos && \
-			(tiles_ptr->type == '1' || tiles_ptr->type == '2' || \
-			tiles_ptr->type == '3' || tiles_ptr->type == '4' || \
-			tiles_ptr->type == '5' || tiles_ptr->type == '6'))
+			((tiles_ptr->type >= '1' && tiles_ptr->type <= '6') || \
+			(tiles_ptr->type >= 'A' && tiles_ptr->type <= 'D') || \
+			(tiles_ptr->type >= 'F' && tiles_ptr->type <= 'H')))
 		{
 			if (f_xpos != tiles_ptr->x_pos && f_xpos != x)
 				(*maps)->x_pos = x;

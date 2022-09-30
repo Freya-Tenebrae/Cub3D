@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/09 12:51:12 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:40:11 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ typedef struct s_ray
 
 typedef struct s_texture
 {
-	int				texture_number;
 	double			position_x_on_wall;
 	int				texture_position[2];
 	double			step;
