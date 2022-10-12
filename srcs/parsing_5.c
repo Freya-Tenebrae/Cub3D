@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_5.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 19:14:18 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/24 19:50:27 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/05 07:12:20 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,11 @@ static int	get_code_color(t_maps **maps, char *s)
 
 void	check_if_correct_code(t_maps **maps, char *s)
 {
-	if (ft_isdigit(*s) != 1)
-		error("color value isn't correct", maps);
-	while (ft_isdigit(*s) == 1)
-		s++;
-	if (*s != ',')
-		error("color value isn't correct", maps);
-	s++;
-	if (ft_isdigit(*s) != 1)
-		error("color value isn't correct", maps);
-	while (ft_isdigit(*s) == 1)
-		s++;
-	if (*s != ',')
-		error("color value isn't correct", maps);
-	s++;
-	if (ft_isdigit(*s) != 1)
-		error("color value isn't correct", maps);
-	while (ft_isdigit(*s) == 1)
-		s++;
+	s = parse_color(maps, s);
+	s = parse_between_colors(maps, s);
+	s = parse_color(maps, s);
+	s = parse_between_colors(maps, s);
+	s = parse_color(maps, s);
 	if (*s != '\0')
 		error("color value isn't correct", maps);
 }

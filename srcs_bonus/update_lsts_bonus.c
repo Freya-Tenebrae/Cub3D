@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:36:39 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/29 19:00:07 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/02 21:17:11 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,20 @@ void	push_tiles_back(t_maps **maps, t_tiles *tiles_to_push)
 		while (tilesptr->next != NULL)
 			tilesptr = tilesptr->next;
 		tilesptr->next = tiles_to_push;
+	}
+}
+
+void	push_actor_back(t_maps **maps, t_actor *actor_to_push)
+{
+	t_actor	*actorptr;
+
+	actorptr = (*maps)->actor;
+	if ((*maps)->actor == NULL)
+		(*maps)->actor = actor_to_push;
+	else
+	{
+		while (actorptr->next != NULL)
+			actorptr = actorptr->next;
+		actorptr->next = actor_to_push;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:04:41 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/29 18:59:58 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/11 20:24:51 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@ static int	loop(t_maps **maps)
 {
 	update_frame(maps);
 	get_movement_factor(maps);
+	update_actor(maps);
 	move(maps);
+	actor_on_player(maps);
 	draw_scene(maps);
 	return (0);
 }
 
 static void	parsing(int argc, const char **argv, t_maps **maps)
 {
-	if (argc != 2)
+	if (argc == 1)
+		tutorial(maps);
+	else if (argc != 2)
 		error("incorrect numbers of arguments", maps);
 	get_map(maps, argv[1]);
 	check_map_validity(maps);

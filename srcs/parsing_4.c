@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_4.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/16 17:10:45 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/04 21:23:26 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ void	add_id_floor_color(t_maps **maps, char **l, int i)
 		free(*l);
 		error("parsing : second definition of floor's color", maps);
 	}
-	while ((*l)[i] == ' ')
+	while (ft_isspace((*l)[i]))
 		i++;
 	if ((*l)[i] == '\0')
 	{
 		free (*l);
 		error("parsing : no value on floor's color", maps);
 	}
-	(*maps)->color_f = dup_path_value(l, i, maps);
+	(*maps)->color_f = dup_color(l, i, maps);
 	if ((*maps)->color_f == NULL)
 		error("malloc error", maps);
 }
@@ -97,14 +97,14 @@ void	add_id_ceiling_color(t_maps **maps, char **l, int i)
 		free(*l);
 		error("parsing : second definition of ceiling's color", maps);
 	}
-	while ((*l)[i] == ' ')
+	while (ft_isspace((*l)[i]))
 		i++;
 	if ((*l)[i] == '\0')
 	{
 		free (*l);
 		error("parsing : no value on ceiling's color", maps);
 	}
-	(*maps)->color_c = dup_path_value(l, i, maps);
+	(*maps)->color_c = dup_color(l, i, maps);
 	if ((*maps)->color_c == NULL)
 		error("malloc error", maps);
 }

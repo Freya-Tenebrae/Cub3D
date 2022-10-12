@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/30 17:28:02 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/12 06:16:45 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 
 # define PATH_TEXTURES_ENTITIES "data/entities.xpm"
 # define PATH_TEXTURES_WALL_FLOOR "data/wallFloorTextures.xpm"
+# define PATH_DECOR_POKEMON "data/decor.xpm"
 
 # define COLOR_WALL_MINIMAP 0x00800080
 # define COLOR_PLAYER_MINIMAP 0x000000FF
@@ -57,6 +58,7 @@
 # define KEY_ANGLE 0.02
 # define KEY_MOVE 0.1
 # define KEY_PITCH 10
+# define ACTOR_MOVE 0.05
 
 # define N_KEY 8
 # define KEY_W 0
@@ -77,6 +79,16 @@
 /* ************************************************************************** */
 /*                                  TYPEDEF                                   */
 /* ************************************************************************** */
+typedef struct s_actor
+{
+	char			type;
+	double			x_pos;
+	double			y_pos;
+	unsigned int	time_down;
+	int				direction;
+	struct s_actor	*next;
+}					t_actor;
+
 typedef struct s_tiles
 {
 	int				x_pos;
@@ -102,6 +114,7 @@ typedef struct s_maps
 	double			y_pos;
 	double			angle_h;
 	double			movement_factor;
+	double			z_buffer[WINDOWS_SIZE_X];
 	int				pitch;
 	int				n_frame;
 	int				key_pressed[N_KEY];
@@ -112,7 +125,7 @@ typedef struct s_maps
 	t_myimg			*textures_entities;
 	t_myimg			*textures_wall_floor;
 	t_tiles			*tiles;
-	double			z_buffer[WINDOWS_SIZE_X];
+	t_actor			*actor;
 }					t_maps;
 
 typedef struct s_ray
@@ -179,12 +192,17 @@ typedef struct s_texture_entitie
 /*                                  FONCTION                                  */
 /* ************************************************************************** */
 int		main(int argc, const char **argv);
+void	tutorial(t_maps **maps);
 void	success(t_maps **maps);
+void	game_over(t_maps **maps);
+void	win(t_maps **maps);
 void	error(char *str, t_maps **maps);
 void	free_maps(t_maps **maps);
 t_tiles	*init_tile(t_maps **maps, char **l);
+t_actor	*init_actor(t_maps **maps, char **l);
 t_maps	*init_maps(void);
 void	push_tiles_back(t_maps **maps, t_tiles *tiles_to_push);
+void	push_actor_back(t_maps **maps, t_actor *actor_to_push);
 void	get_map(t_maps **maps, const char *map_path);
 void	add_line_on_map(t_maps **maps, char **l, int n_line);
 void	check_map_validity(t_maps **maps);
@@ -199,15 +217,22 @@ int		is_out_of_wall(t_maps **maps, double x, double y);
 void	change_pitch(int *pitch, int value);
 void	rotate(double *angle, double value);
 void	update_frame(t_maps **maps);
+void	update_actor(t_maps **maps);
+int		actor_is_in_wall(t_maps **maps, double x, double y);
+void	actor_on_player(t_maps **maps);
 void	draw_scene(t_maps **maps);
 void	draw_pov(t_maps **maps);
 void	draw_floor(t_maps **maps);
 void	draw_entities(t_maps **maps);
 void	pre_calc_raycasting_1(t_maps *maps, t_ray *ray, int count_x);
 void	pre_calc_raycasting_2(t_maps *maps, t_ray *ray, t_texture *text);
+void	sort_actor_from_distance(t_maps **maps);
 void	pre_calc_raycasting_entities(t_maps *maps, t_entitie *entitie);
+void	get_number_text_and_step_actor(t_entitie *entitie, \
+											t_texture_entitie *text, char type);
 void	draw_minimap(t_maps **maps);
-void	action(t_maps **maps);
+void	action_key(t_maps **maps);
+void	action_mouse(t_maps **maps);
 
 /* ************************************************************************** */
 /*                                    END                                     */

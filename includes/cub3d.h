@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/30 14:40:11 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/05 03:05:53 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,9 @@ void	add_id_floor_color(t_maps **maps, char **l, int i);
 void	add_id_ceiling_color(t_maps **maps, char **l, int i);
 void	add_line_on_map(t_maps **maps, char **l, int n_line);
 char	*dup_path_value(char **l, int i, t_maps **maps);
+char	*dup_color(char **l, int i, t_maps **maps);
+char	*parse_color(t_maps **maps, char *s);
+char	*parse_between_colors(t_maps **maps, char *s);
 void	check_map_validity(t_maps **maps);
 void	check_validity_textures(t_maps **maps);
 void	check_color_value(t_maps **maps);

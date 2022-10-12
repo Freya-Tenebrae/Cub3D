@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:04:41 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/29 19:00:03 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/12 04:13:37 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	mouse_hook(int keycode, int x, int y, t_maps **maps)
 	(void)y;
 	(void)maps;
 	if (keycode == 1)
-		ft_putstr("spell : cat transformation\n");
+		action_mouse(maps);
 	return (0);
 }
 

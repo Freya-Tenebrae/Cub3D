@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/29 19:04:56 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/12 04:19:32 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	key_pressed_hook(int keycode, t_maps **maps)
 	if (keycode == ARROW_RIGHT)
 		(*maps)->key_pressed[KEY_RIGHT] = 1;
 	if (keycode == 'e')
-		action(maps);
+		action_key(maps);
 	return (0);
 }
 

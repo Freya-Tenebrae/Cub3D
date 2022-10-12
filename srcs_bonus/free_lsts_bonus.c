@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:36:39 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/29 19:00:02 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/02 21:16:48 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ static void	free_tiles(t_tiles **tiles)
 			tilesnext = (*tiles)->next;
 			free(*tiles);
 			*tiles = tilesnext;
+		}
+	}
+}
+
+static void	free_actor(t_actor **actor)
+{
+	t_actor	*actornext;
+
+	if (actor != NULL)
+	{
+		while (*actor != NULL)
+		{
+			actornext = (*actor)->next;
+			free(*actor);
+			*actor = actornext;
 		}
 	}
 }
@@ -45,6 +60,7 @@ void	free_maps(t_maps **maps)
 	if (maps != NULL && *maps != NULL)
 	{
 		free_tiles(&((*maps)->tiles));
+		free_actor(&((*maps)->actor));
 		if ((*maps)->textures_entities != NULL)
 			free_img(maps, &((*maps)->textures_entities));
 		if ((*maps)->textures_wall_floor != NULL)

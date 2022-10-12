@@ -6,27 +6,11 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:24:51 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/30 17:28:54 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/12 05:36:13 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
-
-static void	get_number_text_and_step(t_entitie *entitie, \
-											t_texture_entitie *text, char type)
-{
-	if (type >= 'x' && type <= 'y')
-		text->number_texture = type - 'x';
-	else if (type >= 'X' && type <= 'Y')
-		text->number_texture = type - 'X' + 2;
-	else if (type >= 'a' && type <= 'd')
-		text->number_texture = type - 'a' + 4;
-	else if (type >= 'f' && type <= 'h')
-		text->number_texture = type - 'f' + 8;
-	text->step = (double)TEXTURE_SIZE_X / (double)entitie->height_and_width;
-	text->pos_start_texture[0] = text->step * (entitie->start[0] - \
-					entitie->x_pos_on_screen + entitie->height_and_width / 2);
-}
 
 static int	get_right_color_texture(t_maps *maps, t_texture_entitie *text)
 {
@@ -69,7 +53,7 @@ static void	draw_entitie(t_maps **maps, t_entitie *entitie, char type)
 	t_texture_entitie	text;
 
 	pre_calc_raycasting_entities(*maps, entitie);
-	get_number_text_and_step(entitie, &text, type);
+	get_number_text_and_step_actor(entitie, &text, type);
 	count[0] = entitie->start[0] -1;
 	while (++(count[0]) < entitie->end[0])
 	{
@@ -79,6 +63,21 @@ static void	draw_entitie(t_maps **maps, t_entitie *entitie, char type)
 		if (count[0] > 0 && count[0] < WINDOWS_SIZE_X && entitie->depth > 0 && \
 			entitie->depth < (*maps)->z_buffer[count[0]])
 			draw_entitie_2(maps, entitie, &text, count);
+	}
+}
+
+void	draw_actors(t_maps **maps, t_entitie *entitie)
+{
+	t_actor		*actorptr;
+
+	sort_actor_from_distance(maps);
+	actorptr = (*maps)->actor;
+	while (actorptr != NULL)
+	{
+		entitie->pos_absolute[0] = actorptr->x_pos;
+		entitie->pos_absolute[1] = actorptr->y_pos;
+		draw_entitie(maps, entitie, actorptr->type);
+		actorptr = actorptr->next;
 	}
 }
 
@@ -95,14 +94,13 @@ void	draw_entities(t_maps **maps)
 	while (tileptr != NULL)
 	{
 		if ((tileptr->type >= 'a' && tileptr->type <= 'd') || \
-			(tileptr->type >= 'f' && tileptr->type <= 'h') || \
-			(tileptr->type >= 'x' && tileptr->type <= 'y') || \
-			(tileptr->type >= 'X' && tileptr->type <= 'Y'))
+			(tileptr->type >= 'f' && tileptr->type <= 'h'))
 		{
 			entitie.pos_absolute[0] = tileptr->x_pos + 0.5;
 			entitie.pos_absolute[1] = tileptr->y_pos + 0.5;
-			draw_entitie (maps, &entitie, tileptr->type);
+			draw_entitie(maps, &entitie, tileptr->type);
 		}
 		tileptr = tileptr->next;
 	}
+	draw_actors(maps, &entitie);
 }

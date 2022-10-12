@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/08/16 16:56:48 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/05 07:16:10 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*dup_path_value(char **l, int i, t_maps **maps)
 			error("parsing : a texture can't take two path", maps);
 		}
 	}
-	str = strndup(&((*l)[i]), j);
+	str = ft_strndup(&((*l)[i]), j);
 	free(*l);
 	return (str);
 }
@@ -44,7 +44,7 @@ void	add_id_north(t_maps **maps, char **l, int i)
 		free(*l);
 		error("parsing : second definition of north's texture", maps);
 	}
-	while ((*l)[i] == ' ')
+	while (ft_isspace((*l)[i]))
 		i++;
 	if ((*l)[i] == '\0')
 	{
@@ -63,7 +63,7 @@ void	add_id_south(t_maps **maps, char **l, int i)
 		free(*l);
 		error("parsing : second definition of south's texture", maps);
 	}
-	while ((*l)[i] == ' ')
+	while (ft_isspace((*l)[i]))
 		i++;
 	if ((*l)[i] == '\0')
 	{
@@ -82,7 +82,7 @@ void	add_id_east(t_maps **maps, char **l, int i)
 		free(*l);
 		error("parsing : second definition of east's texture", maps);
 	}
-	while ((*l)[i] == ' ')
+	while (ft_isspace((*l)[i]))
 		i++;
 	if ((*l)[i] == '\0')
 	{
@@ -101,7 +101,7 @@ void	add_id_west(t_maps **maps, char **l, int i)
 		free(*l);
 		error("parsing : second definition of west's texture", maps);
 	}
-	while ((*l)[i] == ' ')
+	while (ft_isspace((*l)[i]))
 		i++;
 	if ((*l)[i] == '\0')
 	{
