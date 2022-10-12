@@ -9,7 +9,6 @@ This Repositorie contains my solution to the project `cub3d` of 42 (Paris).
 ## Description
 
 This project aims to make a game with the raycasting methode.
-You can move throught 
 
 ## Using Cub3D
 
@@ -52,7 +51,7 @@ make bonus
 #### launch
 
 ```shell
-./Witch\'s_Escape maps/advanced/advanced1.cub
+./Witch\'s_Escape maps/advanced/generic_adventure_3.cub.cub
 ```
 
 ### keys
@@ -67,7 +66,7 @@ make bonus
 - ↓ : look down
 - → : look right
 - e : interact (bonus only)
-- left click : transform a witch in a cat (bonus only) (nif i take the time to code them)
+- left click : transform a witch in a cat for a limited time (only one witch can be transformed at a time) (bonus only)
 
 ## Credits
 
