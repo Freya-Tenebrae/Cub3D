@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#              #
-#    Updated: 2022/10/12 05:37:21 by cmaginot         ###   ########.fr        #
+#    Updated: 2022/10/13 19:52:19 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,8 +117,11 @@ SRCS_BONUS			=	cub3d_bonus.c	\
 						draw_pov_entities_util_1_bonus.c\
 						draw_pov_entities_util_2_bonus.c\
 						draw_minimap_bonus.c\
+						draw_ath_bonus.c\
+						color_transparency_bonus.c\
 						check_validity_textures_bonus.c\
 						time_tool_bonus.c\
+						update_actor_and_spells.c\
 						actor_collision_bonus.c\
 						action_key_bonus.c\
 						action_mouse_bonus.c

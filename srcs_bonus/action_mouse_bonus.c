@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:41:24 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/12 06:24:33 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:28:43 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	unstransform_all_witch(t_maps **maps)
 static void	transform_a_witch(t_actor **actorptr)
 {
 	(*actorptr)->type = ft_toupper((*actorptr)->type);
-	(*actorptr)->time_down = 500;
+	(*actorptr)->time_down = TIME_DOWN;
 }
 
 static int	actor_is_hit(t_maps **maps, t_entitie *entitie)

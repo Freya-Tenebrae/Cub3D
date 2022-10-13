@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:04:41 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/12 04:13:37 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:47:26 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,23 @@
 
 static int	mouse_hook(int keycode, int x, int y, t_maps **maps)
 {
+	int	i;
+
 	(void)x;
 	(void)y;
-	(void)maps;
+	i = N_SPELL;
 	if (keycode == 1)
-		action_mouse(maps);
+	{
+		while (--i >= 0)
+		{
+			if ((*maps)->spells[i] == 0)
+			{
+				(*maps)->spells[i] = TIME_DOWN * 2;
+				action_mouse(maps);
+				break ;
+			}
+		}
+	}
 	return (0);
 }
 

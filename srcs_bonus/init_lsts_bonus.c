@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/12 04:54:12 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:22:29 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,15 @@ static void	fill_maps_with_null(t_maps **maps)
 {
 	int	i;
 
+	i = -1;
+	while (++i < N_KEY)
+		(*maps)->key_pressed[i] = 0;
+	i = -1;
+	while (++i < N_DOOR)
+		(*maps)->cristal_get[i] = 0;
+	i = -1;
+	while (++i < N_SPELL)
+		(*maps)->spells[i] = 0;
 	(*maps)->x_lenght = 0;
 	(*maps)->y_lenght = 0;
 	(*maps)->x_pos = 0;
@@ -79,15 +88,6 @@ static void	fill_maps_with_null(t_maps **maps)
 	(*maps)->n_frame = 0;
 	(*maps)->tiles = NULL;
 	(*maps)->actor = NULL;
-	i = -1;
-	while (++i < WINDOWS_SIZE_X)
-		(*maps)->z_buffer[i] = 0.0;
-	i = -1;
-	while (++i < N_KEY)
-		(*maps)->key_pressed[i] = 0;
-	i = -1;
-	while (++i < N_DOOR)
-		(*maps)->cristal_get[i] = 0;
 }
 
 t_maps	*init_maps(void)
@@ -95,7 +95,6 @@ t_maps	*init_maps(void)
 	int		i;
 	t_maps	*maps;
 
-	i = -1;
 	maps = malloc(sizeof(t_maps));
 	if (!maps)
 		error("malloc error", NULL);
@@ -109,5 +108,8 @@ t_maps	*init_maps(void)
 	if (!maps->textures_wall_floor)
 		error("malloc error", &maps);
 	fill_maps_with_null(&maps);
+	i = -1;
+	while (++i < WINDOWS_SIZE_X)
+		maps->z_buffer[i] = 0.0;
 	return (maps);
 }

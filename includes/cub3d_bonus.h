@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/12 06:16:45 by jfremond         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:47:12 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 # define PATH_DECOR_POKEMON "data/decor.xpm"
 
 # define COLOR_WALL_MINIMAP 0x00800080
+# define COLOR_DOOR_MINIMAP 0x00000000
+# define COLOR_ENTITIE_MINIMAP 0x00FFFFFF
 # define COLOR_PLAYER_MINIMAP 0x000000FF
 # define COLOR_COV_MINIMAP 0x0000FFFF
 # define COLOR_CEILING 0x738585
@@ -71,6 +73,9 @@
 # define KEY_RIGHT 7
 
 # define N_DOOR 7
+# define N_SPELL 5
+
+# define TIME_DOWN 500
 
 # define FOV 0.5
 
@@ -118,6 +123,7 @@ typedef struct s_maps
 	int				pitch;
 	int				n_frame;
 	int				key_pressed[N_KEY];
+	int				spells[N_SPELL];
 	int				cristal_get[N_DOOR];
 	void			*mlx;
 	void			*mlx_win;
@@ -191,48 +197,54 @@ typedef struct s_texture_entitie
 /* ************************************************************************** */
 /*                                  FONCTION                                  */
 /* ************************************************************************** */
-int		main(int argc, const char **argv);
-void	tutorial(t_maps **maps);
-void	success(t_maps **maps);
-void	game_over(t_maps **maps);
-void	win(t_maps **maps);
-void	error(char *str, t_maps **maps);
-void	free_maps(t_maps **maps);
-t_tiles	*init_tile(t_maps **maps, char **l);
-t_actor	*init_actor(t_maps **maps, char **l);
-t_maps	*init_maps(void);
-void	push_tiles_back(t_maps **maps, t_tiles *tiles_to_push);
-void	push_actor_back(t_maps **maps, t_actor *actor_to_push);
-void	get_map(t_maps **maps, const char *map_path);
-void	add_line_on_map(t_maps **maps, char **l, int n_line);
-void	check_map_validity(t_maps **maps);
-void	check_validity_textures(t_maps **maps);
-void	load_textures(t_maps **maps);
-void	event_hook(t_maps **maps);
-void	event_hook_key(t_maps **maps);
-void	event_hook_mouse(t_maps **maps);
-void	get_movement_factor(t_maps **maps);
-void	move(t_maps **maps);
-int		is_out_of_wall(t_maps **maps, double x, double y);
-void	change_pitch(int *pitch, int value);
-void	rotate(double *angle, double value);
-void	update_frame(t_maps **maps);
-void	update_actor(t_maps **maps);
-int		actor_is_in_wall(t_maps **maps, double x, double y);
-void	actor_on_player(t_maps **maps);
-void	draw_scene(t_maps **maps);
-void	draw_pov(t_maps **maps);
-void	draw_floor(t_maps **maps);
-void	draw_entities(t_maps **maps);
-void	pre_calc_raycasting_1(t_maps *maps, t_ray *ray, int count_x);
-void	pre_calc_raycasting_2(t_maps *maps, t_ray *ray, t_texture *text);
-void	sort_actor_from_distance(t_maps **maps);
-void	pre_calc_raycasting_entities(t_maps *maps, t_entitie *entitie);
-void	get_number_text_and_step_actor(t_entitie *entitie, \
-											t_texture_entitie *text, char type);
-void	draw_minimap(t_maps **maps);
-void	action_key(t_maps **maps);
-void	action_mouse(t_maps **maps);
+int				main(int argc, const char **argv);
+void			tutorial(t_maps **maps);
+void			success(t_maps **maps);
+void			game_over(t_maps **maps);
+void			win(t_maps **maps);
+void			error(char *str, t_maps **maps);
+void			free_maps(t_maps **maps);
+t_tiles			*init_tile(t_maps **maps, char **l);
+t_actor			*init_actor(t_maps **maps, char **l);
+t_maps			*init_maps(void);
+void			push_tiles_back(t_maps **maps, t_tiles *tiles_to_push);
+void			push_actor_back(t_maps **maps, t_actor *actor_to_push);
+void			get_map(t_maps **maps, const char *map_path);
+void			add_line_on_map(t_maps **maps, char **l, int n_line);
+void			check_map_validity(t_maps **maps);
+void			check_validity_textures(t_maps **maps);
+void			load_textures(t_maps **maps);
+void			event_hook(t_maps **maps);
+void			event_hook_key(t_maps **maps);
+void			event_hook_mouse(t_maps **maps);
+void			get_movement_factor(t_maps **maps);
+void			move(t_maps **maps);
+int				is_out_of_wall(t_maps **maps, double x, double y);
+void			change_pitch(int *pitch, int value);
+void			rotate(double *angle, double value);
+unsigned long	get_time(void);
+void			update_frame(t_maps **maps);
+void			update_actor(t_maps **maps);
+void			update_spell(t_maps **maps);
+int				actor_is_in_wall(t_maps **maps, double x, double y);
+void			actor_on_player(t_maps **maps);
+void			draw_scene(t_maps **maps);
+void			draw_pov(t_maps **maps);
+void			draw_floor(t_maps **maps);
+void			draw_entities(t_maps **maps);
+void			pre_calc_raycasting_1(t_maps *maps, t_ray *ray, int count_x);
+void			pre_calc_raycasting_2(t_maps *maps, t_ray *ray, \
+															t_texture *text);
+void			sort_actor_from_distance(t_maps **maps);
+void			pre_calc_raycasting_entities(t_maps *maps, t_entitie *entitie);
+void			get_number_text_and_step_actor(t_entitie *entitie, \
+										t_texture_entitie *text, char type);
+void			draw_minimap(t_maps **maps);
+void			draw_ath(t_maps **maps);
+int				get_value_with_transparency(int base_color, int new_color, \
+														double transparency);
+void			action_key(t_maps **maps);
+void			action_mouse(t_maps **maps);
 
 /* ************************************************************************** */
 /*                                    END                                     */

@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:04:41 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/11 20:24:51 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:34:45 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	loop(t_maps **maps)
 	update_frame(maps);
 	get_movement_factor(maps);
 	update_actor(maps);
+	update_spell(maps);
 	move(maps);
 	actor_on_player(maps);
 	draw_scene(maps);

@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/09/29 19:38:57 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:04:42 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	draw_scene(t_maps **maps)
 	draw_pov(maps);
 	draw_entities(maps);
 	draw_minimap(maps);
+	draw_ath(maps);
 	mlx_put_image_to_window((*maps)->mlx, (*maps)->mlx_win, \
 						(*maps)->img->img_ptr, 0, 0);
 	mlx_destroy_image((*maps)->mlx, (*maps)->img->img_ptr);
