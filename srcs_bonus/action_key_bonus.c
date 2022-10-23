@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:41:24 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/13 20:17:18 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/23 07:26:43 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,5 @@ void	action_key(t_maps **maps)
 		(action_on_what >= 'f' && action_on_what <= 'h'))
 		take_pickup(*maps, &ray, action_on_what);
 	if (action_on_what == '6')
-		win(maps);
+		(*maps)->status_game = WAITING;
 }

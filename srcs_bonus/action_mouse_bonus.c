@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:41:24 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/13 19:28:43 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/21 04:03:12 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	actor_is_hit(t_maps **maps, t_entitie *entitie)
 	return (0);
 }
 
-void	action_mouse(t_maps **maps)
+static void	action_transformation_execute(t_maps **maps)
 {
 	t_entitie	entitie;
 	t_actor		*actorptr;
@@ -64,5 +64,21 @@ void	action_mouse(t_maps **maps)
 		if (actor_is_hit(maps, &entitie) == 1)
 			transform_a_witch(&actorptr);
 		actorptr = actorptr->next;
+	}
+}
+
+void	action_transformation(t_maps **maps)
+{
+	int	i;
+
+	i = N_SPELL;
+	while (--i >= 0)
+	{
+		if ((*maps)->spells[i] == 0)
+		{
+			(*maps)->spells[i] = TIME_DOWN * 2;
+			action_transformation_execute(maps);
+			break ;
+		}
 	}
 }

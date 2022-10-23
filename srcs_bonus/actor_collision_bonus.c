@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/12 06:03:11 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/23 07:27:42 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ int	actor_is_in_wall(t_maps **maps, double x, double y)
 	return (0);
 }
 
+static void	hit_player(t_maps **maps)
+{
+	(*maps)->life -= 1;
+	if ((*maps)->life > 0)
+	{
+		(*maps)->status_game = WAITING;
+		(*maps)->n_maps -= 1;
+	}
+	else
+		(*maps)->status_game = GAME_OVER_LOOSE;
+}
+
 void	actor_on_player(t_maps **maps)
 {
 	t_actor	*actorptr;
@@ -62,7 +74,7 @@ void	actor_on_player(t_maps **maps)
 			(actorptr->y_pos - (*maps)->y_pos < 0.5) && \
 			(actorptr->y_pos - (*maps)->y_pos > -0.5) && \
 			(actorptr->type == 'x' || actorptr->type == 'y'))
-			game_over(maps);
+			hit_player(maps);
 		actorptr = actorptr->next;
 	}
 }

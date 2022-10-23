@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/13 19:22:29 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/23 06:52:39 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,13 @@ t_maps	*init_maps(void)
 	maps->textures_wall_floor = init_img();
 	if (!maps->textures_wall_floor)
 		error("malloc error", &maps);
-	fill_maps_with_null(&maps);
 	i = -1;
 	while (++i < WINDOWS_SIZE_X)
 		maps->z_buffer[i] = 0.0;
+	i = -1;
+	fill_maps_with_null(&maps);
+	maps->status_game = WAITING;
+	(*maps).life = N_LIFE;
+	maps->n_maps = 0;
 	return (maps);
 }

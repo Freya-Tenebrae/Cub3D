@@ -6,16 +6,30 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:50:10 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/12 04:19:32 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/23 07:19:19 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-static int	key_pressed_hook(int keycode, t_maps **maps)
+static void	key_pressed_hook_action_and_other(int keycode, t_maps **maps)
 {
 	if (keycode == ESC_KEY)
 		success(maps);
+	if (keycode == 'e')
+		action_key(maps);
+	if (keycode == 'q')
+		action_transformation(maps);
+	if (keycode == ENTER_KEY && (*maps)->status_game == WAITING)
+		(*maps)->status_game = LOADING;
+	if (keycode == ENTER_KEY && (*maps)->status_game == GAME_OVER_LOOSE)
+		game_over(maps);
+	if (keycode == ENTER_KEY && (*maps)->status_game == GAME_OVER_WIN)
+		win(maps);
+}
+
+static void	key_pressed_hook_movement(int keycode, t_maps **maps)
+{
 	if (keycode == 'w')
 		(*maps)->key_pressed[KEY_W] = 1;
 	if (keycode == 'a')
@@ -32,8 +46,12 @@ static int	key_pressed_hook(int keycode, t_maps **maps)
 		(*maps)->key_pressed[KEY_DOWN] = 1;
 	if (keycode == ARROW_RIGHT)
 		(*maps)->key_pressed[KEY_RIGHT] = 1;
-	if (keycode == 'e')
-		action_key(maps);
+}
+
+static int	key_pressed_hook(int keycode, t_maps **maps)
+{
+	key_pressed_hook_movement(keycode, maps);
+	key_pressed_hook_action_and_other(keycode, maps);
 	return (0);
 }
 

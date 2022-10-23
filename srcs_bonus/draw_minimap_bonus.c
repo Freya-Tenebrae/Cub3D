@@ -6,13 +6,13 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:34:51 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/13 18:50:58 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/21 04:42:41 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-static void	draw_entitie_minimap(t_maps **maps, t_tiles *tiles_ptr)
+static void	draw_wall_minimap(t_maps **maps, t_tiles *tiles_ptr)
 {
 	int		count_x;
 	int		count_y;
@@ -35,7 +35,7 @@ static void	draw_entitie_minimap(t_maps **maps, t_tiles *tiles_ptr)
 					3 * WINDOWS_SIZE_X / 4 + count_x] = \
 					get_value_with_transparency((*maps)->img->data[count_y \
 					* WINDOWS_SIZE_X + 3 * WINDOWS_SIZE_X / 4 + count_x], \
-					COLOR_ENTITIE_MINIMAP, 0.5);
+					COLOR_WALL_MINIMAP, 0.5);
 		}
 	}
 }
@@ -68,7 +68,7 @@ static void	draw_door_minimap(t_maps **maps, t_tiles *tiles_ptr)
 	}
 }
 
-static void	draw_wall_minimap(t_maps **maps, t_tiles *tiles_ptr)
+static void	draw_entitie_minimap(t_maps **maps, t_tiles *tiles_ptr)
 {
 	int		count_x;
 	int		count_y;
@@ -91,36 +91,7 @@ static void	draw_wall_minimap(t_maps **maps, t_tiles *tiles_ptr)
 					3 * WINDOWS_SIZE_X / 4 + count_x] = \
 					get_value_with_transparency((*maps)->img->data[count_y \
 					* WINDOWS_SIZE_X + 3 * WINDOWS_SIZE_X / 4 + count_x], \
-					COLOR_WALL_MINIMAP, 0.5);
-		}
-	}
-}
-
-static void	draw_player_minimap(t_maps **maps)
-{
-	int	count_x;
-	int	count_y;
-	int	val_x;
-	int	val_y;
-
-	count_y = WINDOWS_SIZE_Y / 8 - 10;
-	val_y = -9;
-	while (++count_y < WINDOWS_SIZE_Y / 8 + 9)
-	{
-		++val_y;
-		count_x = WINDOWS_SIZE_X / 8 - 10;
-		val_x = -9;
-		while (++count_x < WINDOWS_SIZE_X / 8 + 9)
-		{
-			++val_x;
-			if (val_y * (val_y - 1) + val_x * (val_x - 1) <= 4 * 4)
-			{
-				(*maps)->img->data[count_y * WINDOWS_SIZE_X + \
-					3 * WINDOWS_SIZE_X / 4 + count_x] = \
-					get_value_with_transparency((*maps)->img->data[count_y \
-					* WINDOWS_SIZE_X + 3 * WINDOWS_SIZE_X / 4 + count_x], \
-					COLOR_PLAYER_MINIMAP, 0.5);
-			}
+					COLOR_ENTITIE_MINIMAP, 0.5);
 		}
 	}
 }
@@ -128,8 +99,10 @@ static void	draw_player_minimap(t_maps **maps)
 void	draw_minimap(t_maps **maps)
 {
 	t_tiles	*tiles_ptr;
+	t_actor	*actor_ptr;
 
 	tiles_ptr = (*maps)->tiles;
+	actor_ptr = (*maps)->actor;
 	while (tiles_ptr != NULL)
 	{
 		if ((tiles_ptr->type == '1' || tiles_ptr->type == '2' || \
@@ -143,6 +116,11 @@ void	draw_minimap(t_maps **maps)
 			(tiles_ptr->type >= 'f' && tiles_ptr->type <= 'h'))
 			draw_entitie_minimap(maps, tiles_ptr);
 		tiles_ptr = tiles_ptr->next;
+	}
+	while (actor_ptr != NULL)
+	{
+		draw_actor_minimap(maps, actor_ptr);
+		actor_ptr = actor_ptr->next;
 	}
 	draw_player_minimap(maps);
 }
