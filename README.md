@@ -65,8 +65,8 @@ make bonus
 - ← : look left
 - ↓ : look down
 - → : look right
-- e : interact (bonus only)
-- left click : transform a witch in a cat for a limited time (only one witch can be transformed at a time) (bonus only)
+- e or right click : interact (bonus only)
+- a or left click : transform a witch in a cat for a limited time (only one witch can be transformed at a time) (bonus only)
 
 ## Credits
 
