@@ -38,9 +38,8 @@ make
 
 Witch's escape is an advenced version of cub3D, textures depend on map and some texture are animated.
 Movement depend on time and not on processor speed.
-Exit, pickup (and entities if i take the time to code them) are present and you can interact with them.
-
-Possible upgrade : add ATH, timer and score, ...
+Exit, pickup and "ennemies" are present and you can interact with them.
+There is a system of multiple maps, life, spell slot that regen with time and an ath.
 
 #### Compilation
 
@@ -51,7 +50,7 @@ make bonus
 #### launch
 
 ```shell
-./Witch\'s_Escape maps/advanced/generic_adventure_3.cub.cub
+./Witch\'s_Escape
 ```
 
 ### keys
