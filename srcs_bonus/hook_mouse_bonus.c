@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:04:41 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/30 04:18:57 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/30 04:28:05 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ static int	mouse_hook(int keycode, int x, int y, t_maps **maps)
 	(void)y;
 	if (keycode == 1)
 		action_transformation(maps);
+	if (keycode == 2 && (*maps)->status_game == WAITING)
+		(*maps)->status_game = LOADING;
+	if (keycode == 2 && (*maps)->status_game == GAME_OVER_LOOSE)
+		game_over(maps);
+	if (keycode == 2 && (*maps)->status_game == GAME_OVER_WIN)
+		win(maps);
+	if (keycode == 3)
+		action_key(maps);
 	return (0);
 }
 

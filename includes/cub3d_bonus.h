@@ -6,12 +6,12 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/30 04:11:30 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/30 04:29:05 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_BONUS_WITCH_H
-# define CUB3D_BONUS_WITCH_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 /* ************************************************************************** */
 /*                                  INCLUDES                                  */
