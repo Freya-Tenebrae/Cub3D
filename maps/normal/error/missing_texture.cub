@@ -1,7 +1,7 @@
-NO ./data/wall_floor_ceiling/wall_basic.xpm
-SO ./data/wall_floor_ceiling/wall_bricked_door.xpm
+NO ./data/wall_basic.xpm
+SO ./data/wall_bricked_door.xpm
 
-WE ./data/wall_floor_ceiling/wall_mossy_bricked_door.xpm
+WE ./data/wall_mossy_bricked_door.xpm
 
 
 

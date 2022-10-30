@@ -6,12 +6,12 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/10/23 07:37:20 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/10/30 04:11:30 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
+#ifndef CUB3D_BONUS_WITCH_H
+# define CUB3D_BONUS_WITCH_H
 
 /* ************************************************************************** */
 /*                                  INCLUDES                                  */
@@ -60,14 +60,13 @@
 /* ****************************** TEXTURE PATH ****************************** */
 # define PATH_TEXTURES_ENTITIES "data/entities.xpm"
 # define PATH_TEXTURES_WALL_FLOOR "data/wallFloorTextures.xpm"
-# define PATH_DECOR_POKEMON "data/decor.xpm"
 
 /* ********************************** MAPS ********************************** */
 # define N_MAPS 4
-# define MAPS_1 "maps/advanced/generic_adventure_1.cub"
-# define MAPS_2 "maps/advanced/generic_adventure_2.cub"
-# define MAPS_3 "maps/advanced/generic_adventure_3.cub"
-# define MAPS_4 "maps/advanced/generic_adventure_4.cub"
+# define MAPS_1 "maps/advanced/witch_adventure_1.cub"
+# define MAPS_2 "maps/advanced/witch_adventure_2.cub"
+# define MAPS_3 "maps/advanced/witch_adventure_3.cub"
+# define MAPS_4 "maps/advanced/witch_adventure_4.cub"
 
 /* ********************************** COLOR ********************************* */
 # define COLOR_WALL_MINIMAP 0x00800080
